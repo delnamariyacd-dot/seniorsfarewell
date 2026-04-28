@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root { --primary-pink: #ff85a1; --deep-floral: #4a0e2e; }
+        body, html { margin: 0; padding: 0; min-height: 100%; font-family: 'Poppins', sans-serif; background: #fffafa; overflow-x: hidden; }
+
+        /* Page 1 Styles */
+        #unlock-page {
+            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; background: linear-gradient(to bottom, #ffeef2, #fff); padding: 20px;
+        }
+        .input-box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 300px; position: relative; z-index: 100; }
+        input { width: 100%; padding: 12px; margin: 15px 0; border: 2px solid var(--primary-pink); border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        button { background: var(--primary-pink); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: 600; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 20px; text-align: center; width: 80%; max-width: 280px; }
+
+        /* Page 2 Styles */
+        #main-invite { display: none; min-height: 100vh; width: 100vw; background: white; text-align: center; padding: 40px 0; }
+        .college-name { font-size: 0.8rem; color: #888; letter-spacing: 1px; font-weight: 600; margin-bottom: 5px; }
+        .personal-msg { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--primary-pink); margin: 10px 20px; }
+        .poster-container { width: 90%; max-width: 450px; margin: 20px auto; }
+        #poster-img { width: 100%; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .exit-btn { background: var(--deep-floral); margin-top: 20px; width: 160px; }
+
+        /* Falling Decorations */
+        .falling { position: fixed; top: -10%; pointer-events: none; z-index: 50; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="unlock-page">
+        <div id="falling-container"></div>
+        <div class="input-box">
+            <h2 style="color: var(--deep-floral);">Welcome!</h2>
+            <p>Enter your name to unlock</p>
+            <input type="text" id="userName" placeholder="Your name...">
+            <button onclick="checkName()">Unlock</button>
+        </div>
+    </div>
+
+    <div id="readyModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalQuestion">Are you ready?</h3>
+            <div style="display:flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                <button onclick="goToInvite()">Yes!</button>
+                <button style="background: #ccc;" onclick="handleNo()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-invite">
+        <div class="college-name">CHRIST COLLEGE (AUTONOMOUS) IRINJALAKUDA</div>
+        <div class="personal-msg" id="welcomeUser"></div>
+        <div class="poster-container">
+            <img id="poster-img" src="./F3225CBC-5B1C-4449-B3C1-6
